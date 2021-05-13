@@ -26,25 +26,25 @@ int my_atoi(char *s)
     return (n * minus);
 }
 
-void    sort_stack(t_list **list, int n_arg)
+void    sort_stack(t_list **b, int n_arg)
 {
     int n_tmp;
     t_list  *l_tmp;
 
-    l_tmp = *list;
+    l_tmp = *b;
     while(n_arg--)
     {
-        while ((*list)->next)
+        while ((*b)->next)
         {
-            if ((*list)->n > (*list)->next->n)
+            if ((*b)->n > (*b)->next->n)
             {
-                n_tmp = (*list)->n;
-                (*list)->n = (*list)->next->n;
-                (*list)->next->n = n_tmp;
+                n_tmp = (*b)->n;
+                (*b)->n = (*b)->next->n;
+                (*b)->next->n = n_tmp;
             }
-            (*list) = (*list)->next;
+            (*b) = (*b)->next;
         }
-        *list = l_tmp;
+        *b = l_tmp;
     }
 }
 
@@ -56,4 +56,24 @@ int find_median(t_list *head, int n_arg)
         head = head->next;
     }
     return (head->n);
+}
+
+void    set_index(t_list *a, t_list *b)
+{
+    int index;
+    t_list *tmp;
+
+    while (a)
+    {
+        tmp = b;
+        index = 0;
+        while (a->n != b->n)
+        {
+            b = b->next;
+            index++;
+        }
+        b = tmp;
+        a->index = index;
+        a = a->next;
+    }
 }

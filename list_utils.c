@@ -50,6 +50,7 @@ void    destroy_list(t_list **list)
         *list = (*list)->next;
         tmp->prev = 0;
         tmp->next = 0;
+        tmp->index = 0;
         tmp->n = 0;
         free(tmp);
     }

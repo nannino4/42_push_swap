@@ -7,18 +7,28 @@
 typedef struct s_list
 {
     int n;
+    int index;
     struct s_list   *prev;
     struct s_list   *next;
 }   t_list;
+
+
+typedef struct s_data
+{
+    t_list *a;
+    t_list *b;
+    int m;
+    int n_arg;
+}   t_data;
 
 /*
 ** instructions_2.c
 */
 
-void    rev_rot_a(t_list **head);
-void    rev_rot_b(t_list **head);
-void    rot_a(t_list **head);
-void    rot_b(t_list **head);
+void    rev_rot_a(t_list **a);
+void    rev_rot_b(t_list **b);
+void    rot_a(t_list **a);
+void    rot_b(t_list **b);
 void    rot_all(t_list **a, t_list **b);
 
 /*
@@ -55,8 +65,8 @@ void    remove_element(t_list *l_elem);
 */
 
 int my_atoi(char *s);
-void    sort_stack(t_list **list, int n_arg);
+void    sort_stack(t_list **b, int n_arg);
 int find_median(t_list *head, int n_arg);
-
+void    set_index(t_list *a, t_list *b);
 
 #endif
