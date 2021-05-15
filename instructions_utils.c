@@ -14,6 +14,7 @@ void    rev_rot_list(t_list **head)
     tmp = go_to_end(tmp);
     first = tmp;
     first->next = *head;
+    (*head)->prev = first;
     last = tmp->prev;
     last->next = 0;
     first->prev = 0;

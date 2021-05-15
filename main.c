@@ -1,108 +1,137 @@
 #include "header.h"
 
-void create_b(t_list **a, t_list **b, int m, int n_arg)
+int l_len(t_list *list)
 {
-    *b = 0;
-    while (n_arg)
+    int len;
+
+    len = 0;
+    while (list)
     {
-        if ((*a)->n < m)
+        len++;
+        list = list->next;
+    }
+    return (len);
+}
+
+int check_order(t_list *list, int first_id, int last_id)
+{
+    //todo check if elements are in order
+    return (1);
+}
+
+void    sort_a(t_list **a, t_list **b, int first_id, int last_id)
+{
+    //todo sort with 5 or less elements
+}
+
+void from_b_to_a(t_list **a, t_list **b, int first_id, int last_id)
+{
+    int n;
+
+    n = ((first_id + last_id) / 2) - first_id;
+    if (n <= 2)
+    {
+        sort_b(a, b, first_id, last_id);
+    }
+    while (n)
+    {
+        if ((*b)->index <= ((first_id + last_id) / 2) && (*b)->index >= first_id)
         {
-            push_b(a, b);
-            n_arg--;
+            push_a(a, b);
+            n--;
         }
         else
         {
+            rot_b(b);
+        }   
+    }
+    if (check_order(*a, first_id, ((first_id + last_id) / 2)))
+        return ;
+}
+
+void    set_a_position(t_list **a, int index)
+{
+    int distance;
+
+    if (index > 0)
+    {
+        distance = find_index(index - 1, *a);
+        if (distance > l_len(*a) / 2)
+        {
+            while ((*a)->index != index - 1)
+                rev_rot_a(a);
+            rot_a(a);
+        }
+        else
+        {
+            while ((*a)->index != index - 1)
+                rot_a(a);
             rot_a(a);
         }
     }
 }
 
-int find_index(int my_index, t_list *list)
+void from_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
 {
-    int distance;
+    int n;
 
-    distance = 0;
-    while (list->index != my_index)
+    n = last_id - first_id;
+    while (n)
     {
-        distance++;
-        list = list->next;
+        while (!((*a)->index <= last_id && (*a)->index >= first_id))
+            rot_a(a);
+        push_b(a, b);
+        n--;
     }
-    return (distance);
+    set_a_position(a, first_id);
+
+
+    if (check_order(*b, first_id, ((first_id + last_id) / 2)))
+        send_a(a, b, first_id, ((first_id + last_id) / 2));
+    else
+        from_b_to_a(a, b, first_id, ((first_id + last_id) / 2));
+    if (!check_order(*a, ((first_id + last_id) / 2) + 1, last_id))
+        from_a_to_b(a, b, ((first_id + last_id) / 2) + 1, last_id);
+
+
+    if (!check_order(*b, first_id, l_len(*a) - 1))
+        if (l_len(*a) - 0 <= 5)
+            sort_a(a, b, 0, l_len(*a) - 1);
+        else
+            from_a_to_b(a, b, 0, (l_len(*a) + 0) / 2);
 }
 
-void    order_b(t_list **a, t_list **b, int n_arg)
+void    init_data(t_data *data, int argc)
 {
-    int current_index;
-    int distance;
-
-    current_index = n_arg / 2;
-    while (--current_index)
-    {
-        distance = find_index(current_index, *b);
-        if (distance > n_arg / 4)
-        {
-            distance = (n_arg / 2) - distance;
-            while (distance--)
-                rev_rot_b(b);
-        }
-        else
-        {
-            while (distance--)
-                rot_b(b);
-        }
-        push_a(a, b);
-    }
-    n_arg /= 2;
-    while (n_arg--)
-        push_b(a, b);
-}
-
-void    order_a(t_list **a, t_list **b, int n_arg)
-{
-    int current_index;
-    int distance;
-
-    current_index = n_arg;
-    while (--current_index >= n_arg / 2)
-    {
-        distance = find_index(current_index, *a);
-        if (distance > n_arg / 4)
-        {
-            distance = (n_arg / 2) - distance;
-            while (distance--)
-                rev_rot_a(a);
-        }
-        else
-        {
-            while (distance--)
-                rot_a(a);
-        }
-        push_b(a, b);
-    }
-    while (n_arg--)
-        push_a(a, b);
+    data->a = 0;
+    data->b = 0;
+    data->n_arg = argc - 1;
+    data->first_id = 0;
+    data->last_id = (argc - 2) / 2;
 }
 
 int main(int argc, char **argv)
 {
     t_data data;
 
-    data.a = 0;
-    data.b = 0;
-    data.n_arg = argc - 1;
+    init_data(&data, argc);
     if (argc < 2)
         return (0);
-    argv++;
     while (--argc)
     {
-        append_element(&data.a, my_atoi(argv[data.n_arg - argc]));
-        append_element(&data.b, my_atoi(argv[data.n_arg - argc]));
+        append_element(&data.a, my_atoi(*(++argv)), 0);
+        append_element(&data.b, my_atoi(*argv), 0);
     }
-    sort_stack(&data.b, data.n_arg);
-    set_index(data.a, data.b);
-    data.m = find_median(data.b, data.n_arg);
-    destroy_list(&data.b);
-    create_b(&data.a, &data.b, data.m, data.n_arg / 2);
-    order_b(&data.a, &data.b, data.n_arg);
-    order_a(&data.a, &data.b, data.n_arg);
+    set_indexes(data.a, &data.b, data.n_arg);
+    if (check_order(data.a, 0, max_index(data.a)))
+        return ;
+    while (data.last_id - data.first_id > 5 && check_order(data.a, data.first_id, data.last_id))
+    {
+        data.first_id = data.last_id + 1;
+        data.last_id = (max_index(data.a) + data.first_id) / 2;
+    }
+    if (data.last_id - data.first_id <= 5)
+        sort_a(&data.a, &data.b, data.first_id, data.last_id);
+    else
+        from_a_to_b(&data.a, &data.b, data.first_id, data.last_id);
 }

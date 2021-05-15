@@ -17,8 +17,9 @@ typedef struct s_data
 {
     t_list *a;
     t_list *b;
-    int m;
     int n_arg;
+    int first_id;
+    int last_id;
 }   t_data;
 
 /*
@@ -54,9 +55,9 @@ void    swap_all(t_list **a, t_list **b);
 ** list_utils.c
 */
 
-t_list  *create_lelem(int n);
+t_list  *create_lelem(int n, int index);
 t_list  *go_to_end(t_list *list);
-void    append_element(t_list **head, int n);
+void    append_element(t_list **head, int n, int index);
 void    destroy_list(t_list **list);
 void    remove_element(t_list *l_elem);
 
@@ -66,7 +67,8 @@ void    remove_element(t_list *l_elem);
 
 int my_atoi(char *s);
 void    sort_stack(t_list **b, int n_arg);
-int find_median(t_list *head, int n_arg);
-void    set_index(t_list *a, t_list *b);
+void    set_indexes(t_list *a, t_list **b, int n_arg);
+int find_index(int my_index, t_list *list);
+int max_index(t_list *list);
 
 #endif

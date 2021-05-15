@@ -1,6 +1,6 @@
 #include "header.h"
 
-t_list  *create_lelem(int n)
+t_list  *create_lelem(int n, int index)
 {
     t_list  *elem;
 
@@ -13,6 +13,7 @@ t_list  *create_lelem(int n)
     elem->prev = 0;
     elem->next = 0;
     elem->n = n;
+    elem->index = index;
     return (elem); 
 }
 
@@ -25,18 +26,18 @@ t_list  *go_to_end(t_list *list)
     return (list);
 }
 
-void    append_element(t_list **head, int n)
+void    append_element(t_list **head, int n, int index)
 {
     t_list  *l_tmp;
 
     l_tmp = *head;
     if (!*head)
     {
-        *head = create_lelem(n);
+        *head = create_lelem(n, index);
         return ;
     }
     l_tmp = go_to_end(l_tmp);
-    l_tmp->next = create_lelem(n);
+    l_tmp->next = create_lelem(n, index);
     l_tmp->next->prev = l_tmp;
 }
 

@@ -48,32 +48,51 @@ void    sort_stack(t_list **b, int n_arg)
     }
 }
 
-int find_median(t_list *head, int n_arg)
+void    set_indexes(t_list *a, t_list **b, int n_arg)
 {
-    n_arg /= 2;
-    while (n_arg--)
-    {
-        head = head->next;
-    }
-    return (head->n);
-}
-
-void    set_index(t_list *a, t_list *b)
-{
+    sort_stack(b, n_arg);
     int index;
     t_list *tmp;
 
     while (a)
     {
-        tmp = b;
+        tmp = *b;
         index = 0;
-        while (a->n != b->n)
+        while (a->n != (*b)->n)
         {
-            b = b->next;
+            *b = (*b)->next;
             index++;
         }
-        b = tmp;
+        *b = tmp;
         a->index = index;
         a = a->next;
     }
+    destroy_list(b);
+}
+
+int find_index(int my_index, t_list *list)
+{
+    int distance;
+
+    distance = 0;
+    while (list->index != my_index)
+    {
+        distance++;
+        list = list->next;
+    }
+    return (distance);
+}
+
+int max_index(t_list *list)
+{
+    int max_index;
+
+    max_index = 0;
+    while (list)
+    {
+        if (list->index > max_index)
+            max_index = list->index;
+        list = list->next;
+    }
+    return (max_index);
 }
