@@ -1,31 +1,5 @@
 #include "header.h"
 
-int my_atoi(char *s)
-{
-    long int    n;
-    int minus;
-
-    n = 0;
-    minus = 1;
-    if (!s)
-    {
-        write(1, "\n\nerror\n\nmy_atoi found a null pointer as argument\n", 47);
-        exit(1);
-    }
-    if (*s == '-')
-    {
-        minus = -1;
-        s++;
-    }
-    while (*s <= '9' && *s >= '0' && *s)
-    {
-        n *= 10;
-        n += *s - '0';
-        s++;
-    }
-    return (n * minus);
-}
-
 void    sort_stack(t_list **b, int n_arg)
 {
     int n_tmp;
@@ -83,16 +57,20 @@ int find_index(int my_index, t_list *list)
     return (distance);
 }
 
-int max_index(t_list *list)
+int search_index(t_list *list, int index)
 {
-    int max_index;
-
-    max_index = 0;
     while (list)
     {
-        if (list->index > max_index)
-            max_index = list->index;
+        if (list->index == index)
+            return (1);
         list = list->next;
     }
-    return (max_index);
+    return (0);
+}
+
+int max_chunk_index(t_list *list, int index)
+{
+    while (search_index(list, index))
+        index++;
+    return (--index);
 }

@@ -6,6 +6,8 @@ SRCS	=	\
 			instructions.c \
 			list_utils.c \
 			main.c \
+			quicksort.c \
+			utils_2.c \
 			utils.c \
 
 OBJS	= $(SRCS:.c=.o)

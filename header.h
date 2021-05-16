@@ -17,7 +17,6 @@ typedef struct s_data
 {
     t_list *a;
     t_list *b;
-    int n_arg;
     int first_id;
     int last_id;
 }   t_data;
@@ -65,10 +64,21 @@ void    remove_element(t_list *l_elem);
 ** utils.c
 */
 
-int my_atoi(char *s);
+int     my_atoi(char *s);
 void    sort_stack(t_list **b, int n_arg);
 void    set_indexes(t_list *a, t_list **b, int n_arg);
-int find_index(int my_index, t_list *list);
-int max_index(t_list *list);
+int     find_index(int my_index, t_list *list);
+int     max_index(t_list *list);
+int     check_order(t_list *list, int first_id, int last_id);
+
+/*
+** quicksort.c
+*/
+
+void    first_a_to_b(t_list **a, t_list **b, int first_id, int last_id);
+void    from_a_to_b(t_list **a, t_list **b, int first_id, int last_id);
+void    from_b_to_a(t_list **a, t_list **b, int first_id, int last_id);
+void    sort_b(t_list **a, t_list **b, int first_id, int last_id);
+void    sort_a(t_list **a, t_list **b, int first_id, int last_id);
 
 #endif
