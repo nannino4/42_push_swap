@@ -10,24 +10,29 @@ void    sort_b(t_list **a, t_list **b, int first_id, int last_id)
     //todo sort with 5 or less elements
 }
 */
-void from_b_to_a(t_list **a, t_list **b, int first_id, int last_id)
+void from_b_to_a(t_list **a, t_list **b, int fixed_first, int last_id)
 {
     int n;
+    int custom_index;
 
-    n = last_id + 1 - first_id;
+    custom_index = (last_id + fixed_first) / 2 + 1;
+    n = last_id + 1 - custom_index;
     while (n)
     {
-        while (!((*b)->index <= last_id && (*b)->index >= first_id))
+        while (!((*b)->index <= last_id && (*b)->index >= custom_index))
             rot_b(b);
         push_a(a, b);
         n--;
     }
-    while (last_id - first_id >= 5)
+    if (custom_index - 1 - fixed_first >= 3)
     {
-        from_a_to_b(a, b, first_id, (last_id + first_id) / 2);
-        first_id = (last_id + first_id) / 2 + 1;
+        from_b_to_a(a, b, fixed_first, custom_index - 1);
+        from_a_to_b(a, b, custom_index, last_id);
     }
-//    sort_a(a, b, first_id, last_id);
+    else
+    {
+        //sort_b(a, b, first_id, last_id);
+    }
 }
 
 void from_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
@@ -49,9 +54,10 @@ void from_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
     }
     while (i--)
         rev_rot_a(a);
-    while (last_id - first_id >= 5)
+    while (last_id - first_id >= 3)
     {
         from_b_to_a(a, b, (last_id + first_id) / 2 + 1, last_id);
+        //from_a_to_b(a, b, (last_id + first_id) / 2 + 1, last_id);
         last_id = (last_id + first_id) / 2;
     }
 //    sort_b(a, b, first_id, last_id);
@@ -69,10 +75,11 @@ void first_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
         push_b(a, b);
         n--;
     }
-    while (last_id - first_id >= 5)
+    if (last_id - first_id >= 3)
     {
-        from_b_to_a(a, b, (last_id + first_id) / 2 + 1, last_id);
-        last_id = (last_id + first_id) / 2;
+        from_b_to_a(a, b, first_id, last_id);
+        //from_a_to_b(a, b, (last_id + first_id) / 2 + 1, last_id);
     }
-//    sort_b(a, b, first_id, last_id);
+    //else
+    //    sort_b(a, b, first_id, last_id);
 }

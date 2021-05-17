@@ -17,8 +17,10 @@ typedef struct s_data
 {
     t_list *a;
     t_list *b;
-    int first_id;
-    int last_id;
+    int fixed_first;
+    int fixed_last;
+    int first;
+    int last;
 }   t_data;
 
 /*
