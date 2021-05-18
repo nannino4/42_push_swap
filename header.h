@@ -13,14 +13,18 @@ typedef struct s_list
 }   t_list;
 
 
+typedef struct s_index
+{
+    int first;
+    int middle;
+    int last;
+}   t_index;
+
 typedef struct s_data
 {
-    t_list *a;
-    t_list *b;
-    int fixed_first;
-    int fixed_last;
-    int first;
-    int last;
+    int n;
+    int middle;
+    int i;
 }   t_data;
 
 /*
@@ -70,17 +74,17 @@ int     my_atoi(char *s);
 void    sort_stack(t_list **b, int n_arg);
 void    set_indexes(t_list *a, t_list **b, int n_arg);
 int     find_index(int my_index, t_list *list);
-int     max_index(t_list *list);
-int     check_order(t_list *list, int first_id, int last_id);
+int     check_order(t_list *list, int first, int last);
+void    init_data(t_data *data, int first, int last);
 
 /*
 ** quicksort.c
 */
 
-void    first_a_to_b(t_list **a, t_list **b, int first_id, int last_id);
-void    from_a_to_b(t_list **a, t_list **b, int first_id, int last_id);
-void    from_b_to_a(t_list **a, t_list **b, int first_id, int last_id);
-void    sort_b(t_list **a, t_list **b, int first_id, int last_id);
-void    sort_a(t_list **a, t_list **b, int first_id, int last_id);
+void    first_a_to_b(t_list **a, t_list **b, int first, int last);
+void    from_a_to_b(t_list **a, t_list **b, int first, int last);;
+void    from_b_to_a(t_list **a, t_list **b, int first, int last);
+void    sort_b(t_list **a, t_list **b, int first, int last);
+void    sort_a(t_list **a, t_list **b, int first, int last);
 
 #endif

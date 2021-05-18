@@ -1,38 +1,32 @@
 #include "header.h"
 
-void    init_data(t_data *data, int argc)
+void    init_index(t_index *index, int argc)
 {
-    data->a = 0;
-    data->b = 0;
-    data->first = 0;
-    data->last = argc - 2;
+    index->first = 0;
+    index->last = argc - 2;
 }
 
 int main(int argc, char **argv)
 {
-    t_data data;
+    t_index index;
+    t_list *a;
+    t_list *b;
 
-    init_data(&data, argc);
+    a = 0;
+    b = 0;
+    init_index(&index, argc);
     if (argc < 2)
         return (0);
     while (--argc)
     {
-        append_element(&data.a, my_atoi(*(++argv)), 0);
-        append_element(&data.b, my_atoi(*argv), 0);
+        append_element(&a, my_atoi(*(++argv)), 0);
+        append_element(&b, my_atoi(*argv), 0);
     }
-    set_indexes(data.a, &data.b, data.last + 1);
-    //if (check_order(data.a, 0, data.last))
+    set_index(a, &b, index.last + 1);
+    //if (check_order(a, 0, index.last))
     //    return (0);
-    if (data.last - data.first < 3)
-    {
-        first_a_to_b(&data.a, &data.b, data.first, (data.last + data.first) / 2);
-        data.first = (data.last + data.first) / 2 + 1;
-        while (data.last - data.first >= 3)
-        {
-            from_a_to_b(&data.a, &data.b, data.first, (data.last + data.first) / 2);
-            data.first = (data.last + data.first) / 2 + 1;
-        }
-    }
+    if (index.last - index.first >= 3)
+        first_a_to_b(&a, &b, index.first, index.last);
     //else
-        //sort_a(&data.a, &data.b, data.first, data.last);
+        //sort_a(&a, &b, index.first, index.last);
 }

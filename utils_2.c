@@ -32,3 +32,9 @@ int check_order(t_list *list, int first_id, int last_id)
     return (1);
 }
 */
+void    init_data(t_data *data, int first, int last)
+{
+    data->i = 0;
+    data->middle = (last + first) / 2;
+    data->n = data->middle + 1 - first;
+}

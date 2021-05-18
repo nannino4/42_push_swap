@@ -1,85 +1,87 @@
 #include "header.h"
 /*
-void    sort_a(t_list **a, t_list **b, int first_id, int last_id)
+void    sort_a(t_list **a, t_list **b, int .first, int .last)
 {
     //todo sort with 5 or less elements
 }
 
-void    sort_b(t_list **a, t_list **b, int first_id, int last_id)
+void    sort_b(t_list **a, t_list **b, int .first, int .last)
 {
     //todo sort with 5 or less elements
 }
 */
-void from_b_to_a(t_list **a, t_list **b, int fixed_first, int last_id)
+void from_b_to_a(t_list **a, t_list **b, int first, int last)
 {
     int n;
-    int custom_index;
+    int middle;
 
-    custom_index = (last_id + fixed_first) / 2 + 1;
-    n = last_id + 1 - custom_index;
+    middle = (last + first) / 2;
+    n = last + 1 - middle;
+
     while (n)
     {
-        while (!((*b)->index <= last_id && (*b)->index >= custom_index))
+        while (!((*b)->index <= last && (*b)->index >= middle))
             rot_b(b);
         push_a(a, b);
         n--;
     }
-    if (custom_index - 1 - fixed_first >= 3)
-    {
-        from_b_to_a(a, b, fixed_first, custom_index - 1);
-        from_a_to_b(a, b, custom_index, last_id);
-    }
+    if (middle - first > 3)
+        from_b_to_a(a, b, first, middle - 1);
     else
-    {
-        //sort_b(a, b, first_id, last_id);
-    }
+        sort_b(a, b, first, middle - 1);
+    if (last + 1 - middle > 3)
+        from_a_to_b(a, b, middle, last);
+    else
+        sort_a(a, b, middle, last);
 }
 
-void from_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
+void from_a_to_b(t_list **a, t_list **b, int first, int last)
 {
-    int n;
-    int i;
+    t_data data;
 
-    i = 0;
-    n = last_id + 1 - first_id;
-    while (n)
+    init_data(&data, first, last);
+    while (data.n)
     {
-        while (!((*a)->index <= last_id && (*a)->index >= first_id))
+        while (!((*a)->index <= data.middle && (*a)->index >= first))
         {
             rot_a(a);
-            i++;
+            data.i++;
         }
         push_b(a, b);
-        n--;
+        data.n--;
     }
-    while (i--)
+    while (data.i--)
         rev_rot_a(a);
-    while (last_id - first_id >= 3)
-    {
-        from_b_to_a(a, b, (last_id + first_id) / 2 + 1, last_id);
-        //from_a_to_b(a, b, (last_id + first_id) / 2 + 1, last_id);
-        last_id = (last_id + first_id) / 2;
-    }
-//    sort_b(a, b, first_id, last_id);
+    if (data.middle + 1 - first > 3)
+        from_b_to_a(a, b, first, data.middle);
+    else
+        sort_b(a, b, first, data.middle);
+    if (last - data.middle > 3)
+        from_a_to_b(a, b, data.middle + 1, last);
+    else
+        sort_a(a, b, data.middle + 1, last);
 }
 
-void first_a_to_b(t_list **a, t_list **b, int first_id, int last_id)
+void first_a_to_b(t_list **a, t_list **b, int first, int last)
 {
     int n;
+    int middle;
 
-    n = last_id + 1 - first_id;
+    middle = (last + first) / 2;
+    n = middle + 1 - first;
     while (n)
     {
-        while (!((*a)->index <= last_id && (*a)->index >= first_id))
+        while (!((*a)->index <= middle && (*a)->index >= first))
             rot_a(a);
         push_b(a, b);
         n--;
     }
-    if (last_id - first_id >= 3)
-    {
-        from_b_to_a(a, b, first_id, last_id);
-        //from_a_to_b(a, b, (last_id + first_id) / 2 + 1, last_id);
-    }
-    //else
-    //    sort_b(a, b, first_id, last_id);
+    if (middle + 1 - first > 3)
+        from_b_to_a(a, b, first, middle);
+    else
+        sort_b(a, b, first, middle);
+    if (last - middle > 3)
+        from_a_to_b(a, b, middle + 1, last);
+    else
+        sort_a(a, b, middle + 1, last);
 }
