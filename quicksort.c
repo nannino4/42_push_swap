@@ -1,15 +1,5 @@
 #include "header.h"
-/*
-void    sort_a(t_list **a, t_list **b, int .first, int .last)
-{
-    //todo sort with 5 or less elements
-}
 
-void    sort_b(t_list **a, t_list **b, int .first, int .last)
-{
-    //todo sort with 5 or less elements
-}
-*/
 void from_b_to_a(t_list **a, t_list **b, int first, int last)
 {
     int n;

@@ -87,4 +87,26 @@ void    from_b_to_a(t_list **a, t_list **b, int first, int last);
 void    sort_b(t_list **a, t_list **b, int first, int last);
 void    sort_a(t_list **a, t_list **b, int first, int last);
 
+void    instant_sort(t_list **a, t_list **b, int first, int last);
+
+void    instant_sort_a_132(t_list **a, t_list **b);
+void    instant_sort_a_213(t_list **a, t_list **b);
+void    instant_sort_a_231(t_list **a, t_list **b);
+void    instant_sort_a_312(t_list **a, t_list **b);
+void    instant_sort_a_321(t_list **a, t_list **b);
+
+void    sort_b_123(t_list **a, t_list **b);
+void    sort_b_132(t_list **a, t_list **b);
+void    sort_b_213(t_list **a, t_list **b);
+void    sort_b_231(t_list **a, t_list **b);
+void    sort_b_312(t_list **a, t_list **b);
+void    sort_b_321(t_list **a, t_list **b);
+
+void    sort_a_123(t_list **a, t_list **b);
+void    sort_a_132(t_list **a, t_list **b);
+void    sort_a_213(t_list **a, t_list **b);
+void    sort_a_231(t_list **a, t_list **b);
+void    sort_a_312(t_list **a, t_list **b);
+void    sort_a_321(t_list **a, t_list **b);
+
 #endif
