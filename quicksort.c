@@ -6,23 +6,23 @@ void from_b_to_a(t_list **a, t_list **b, int first, int last)
     int middle;
 
     middle = (last + first) / 2;
-    n = last + 1 - middle;
+    n = last - middle;
 
     while (n)
     {
-        while (!((*b)->index <= last && (*b)->index >= middle))
+        while (!((*b)->index <= last && (*b)->index > middle))
             rot_b(b);
         push_a(a, b);
         n--;
     }
     if (middle - first > 3)
-        from_b_to_a(a, b, first, middle - 1);
+        from_b_to_a(a, b, first, middle);
     else
-        sort_b(a, b, first, middle - 1);
+        sort_b(a, b, first, middle);
     if (last + 1 - middle > 3)
-        from_a_to_b(a, b, middle, last);
+        from_a_to_b(a, b, middle + 1, last);
     else
-        sort_a(a, b, middle, last);
+        sort_a(a, b, middle + 1, last);
 }
 
 void from_a_to_b(t_list **a, t_list **b, int first, int last)

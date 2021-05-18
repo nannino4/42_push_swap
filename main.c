@@ -6,6 +6,20 @@ void    init_index(t_index *index, int argc)
     index->last = argc - 2;
 }
 
+int check_order(t_list *a, int first, int last)
+{
+    int i;
+
+    i = first;
+    while (i <= last)
+    {
+        if (a->index != i++)
+            return (0);
+        a = a->next;
+    }
+    return (1);
+}
+
 int main(int argc, char **argv)
 {
     t_index index;
@@ -23,8 +37,8 @@ int main(int argc, char **argv)
         append_element(&b, my_atoi(*argv), 0);
     }
     set_indexes(a, &b, index.last + 1);
-    //if (check_order(a, 0, index.last))
-    //    return (0);
+    if (check_order(a, 0, index.last))
+        return (0);
     if (index.last + 1 - index.first > 5)
         first_a_to_b(&a, &b, index.first, index.last);
     else
