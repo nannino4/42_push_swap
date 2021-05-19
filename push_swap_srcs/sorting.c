@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	sort_3_a(t_list **a, t_list **b, int first, int last)
 {
@@ -22,7 +22,7 @@ void	sort_3_a(t_list **a, t_list **b, int first, int last)
 			sort_a_312(a, b);
 		else
 			sort_a_321(a, b);
-	} 
+	}
 	last = last + 1;
 }
 
@@ -75,7 +75,7 @@ void	sort_3_b(t_list **a, t_list **b, int first, int last)
 void	sort_b(t_list **a, t_list **b, int first, int last)
 {
 	if (last + 1 - first == 3)
-		sort_3_b(a, b, first, last); 
+		sort_3_b(a, b, first, last);
 	else
 	{
 		if ((*b)->index == first)

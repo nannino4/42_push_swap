@@ -1,40 +1,50 @@
-NAME	= push_swap
+NAME		= push_swap
 
-SRCS	=	\
-			instant_sort_3_utils.c \
-			instant_sort.c \
-			instructions_2.c \
-			instructions_utils.c \
-			instructions.c \
-			list_utils.c \
-			main.c \
-			quicksort.c \
-			sorting_a_2.c \
-			sorting_a.c \
-			sorting_b_2.c \
-			sorting_b.c \
-			sorting.c \
-			utils_2.c \
-			utils.c \
+BONUS_NAME	= checker
 
-OBJS	= $(SRCS:.c=.o)
+SRCS		=	\
+				push_swap_srcs/instant_sort_3_utils.c \
+				push_swap_srcs/instant_sort.c \
+				push_swap_srcs/instructions_2.c \
+				push_swap_srcs/instructions_utils.c \
+				push_swap_srcs/instructions.c \
+				push_swap_srcs/list_utils.c \
+				push_swap_srcs/main.c \
+				push_swap_srcs/quicksort.c \
+				push_swap_srcs/sorting_a_2.c \
+				push_swap_srcs/sorting_a.c \
+				push_swap_srcs/sorting_b_2.c \
+				push_swap_srcs/sorting_b.c \
+				push_swap_srcs/sorting.c \
+				push_swap_srcs/utils_2.c \
+				push_swap_srcs/utils.c \
 
-CFLAGS	= -Wall -Wextra -Werror -I .
+OBJS		= $(SRCS:.c=.o)
 
-%.o :			%.c
-				gcc -c -g $(CFLAGS) $< -o $@
+BONUS_SRCS	=	\
+				checker/main.c \
 
-$(NAME):		$(OBJS)
-				gcc -g $(CFLAGS) $(OBJS) -o $(NAME)
+BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
-all:			$(NAME)
+CFLAGS		= -Wall -Wextra -Werror -I ./include
+
+%.o :		%.c
+			gcc -c -g $(CFLAGS) $< -o $@
+
+$(NAME):	$(OBJS)
+			gcc -g $(CFLAGS) $(OBJS) -o $(NAME)
+
+all:		$(NAME)
+
+bonus:		$(NAME) $(BONUS_OBJS)
+			gcc -g $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 clean:
-				rm -f $(OBJS)
+			rm -f $(OBJS)
 
-fclean:			clean
-				rm -f $(NAME)
+fclean:		clean
+			rm -f $(NAME)
 
-re:				fclean all
+re:			fclean all
 
-.PHONY:			all clean fclean re
+.PHONY:		all clean fclean re

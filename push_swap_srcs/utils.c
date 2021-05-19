@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	sort_stack(t_list **b, int n_arg)
 {
@@ -6,7 +6,7 @@ void	sort_stack(t_list **b, int n_arg)
 	t_list	*l_tmp;
 
 	l_tmp = *b;
-	while(n_arg--)
+	while (n_arg--)
 	{
 		while ((*b)->next)
 		{
@@ -22,12 +22,26 @@ void	sort_stack(t_list **b, int n_arg)
 	}
 }
 
+void	check_duplicates(t_list *b)
+{
+	while (b->next)
+	{
+		if (b->n == b->next->n)
+		{
+			write(2, "\n\nError\nThere are duplicates\n\n", 30);
+			exit(1);
+		}
+		b = b->next;
+	}
+}
+
 void	set_indexes(t_list *a, t_list **b, int n_arg)
 {
 	int		index;
 	t_list	*tmp;
 
 	sort_stack(b, n_arg);
+	check_duplicates(*b);
 	while (a)
 	{
 		tmp = *b;
@@ -42,35 +56,4 @@ void	set_indexes(t_list *a, t_list **b, int n_arg)
 		a = a->next;
 	}
 	destroy_list(b);
-}
-
-int	find_index(int my_index, t_list *list)
-{
-	int		distance;
-
-	distance = 0;
-	while (list->index != my_index)
-	{
-		distance++;
-		list = list->next;
-	}
-	return (distance);
-}
-
-int	search_index(t_list *list, int index)
-{
-	while (list)
-	{
-		if (list->index == index)
-			return (1);
-		list = list->next;
-	}
-	return (0);
-}
-
-int	max_chunk_index(t_list *list, int index)
-{
-	while (search_index(list, index))
-		index++;
-	return (--index);
 }

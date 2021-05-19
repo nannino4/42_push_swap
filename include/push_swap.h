@@ -1,10 +1,10 @@
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
 	int				n;
 	int				index;
@@ -12,15 +12,14 @@ typedef struct	s_list
 	struct s_list	*next;
 }	t_list;
 
-
-typedef struct	s_index
+typedef struct s_index
 {
 	int	first;
 	int	middle;
 	int	last;
 }	t_index;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int	n;
 	int	middle;

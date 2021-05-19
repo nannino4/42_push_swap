@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	instant_sort_a_132(t_list **a, t_list **b)
 {
@@ -27,7 +27,7 @@ void	instant_sort_a_312(t_list **a, t_list **b)
 
 void	instant_sort_a_321(t_list **a, t_list **b)
 {
-	rot_a(a); 
+	rot_a(a);
 	swap_a(a);
 	*b = *b;
 }

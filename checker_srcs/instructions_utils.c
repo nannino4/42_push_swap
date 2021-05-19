@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	rev_rot_list(t_list **head)
 {
@@ -18,7 +18,7 @@ void	rev_rot_list(t_list **head)
 	last = tmp->prev;
 	last->next = 0;
 	first->prev = 0;
-	*head = first; 
+	*head = first;
 }
 
 void	rot_list(t_list **head)

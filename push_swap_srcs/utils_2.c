@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 int	my_atoi(char *s)
 {
@@ -7,11 +7,6 @@ int	my_atoi(char *s)
 
 	n = 0;
 	minus = 1;
-	if (!s)
-	{
-		write(1, "\n\nerror\n\nmy_atoi found a null pointer as argument\n", 47);
-		exit(1);
-	}
 	if (*s == '-')
 	{
 		minus = -1;
@@ -22,6 +17,12 @@ int	my_atoi(char *s)
 		n *= 10;
 		n += *s - '0';
 		s++;
+	}
+	if (*s || (minus == 1 && n > INT32_MAX) || \
+			(minus == -1 && n - 1 > INT32_MAX))
+	{
+		write(1, "\n\nError\nInvalid input format\n\n", 30);
+		exit(1);
 	}
 	return (n * minus);
 }

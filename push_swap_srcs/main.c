@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	init_index(t_index *index, int argc)
 {
@@ -43,4 +43,5 @@ int	main(int argc, char **argv)
 		first_a_to_b(&a, &b, index.first, index.last);
 	else
 		instant_sort(&a, &b, index.first, index.last);
+	destroy_list(&a);
 }

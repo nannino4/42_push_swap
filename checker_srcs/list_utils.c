@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 t_list	*create_lelem(int n, int index)
 {
@@ -14,7 +14,7 @@ t_list	*create_lelem(int n, int index)
 	elem->next = 0;
 	elem->n = n;
 	elem->index = index;
-	return (elem); 
+	return (elem);
 }
 
 t_list	*go_to_end(t_list *list)

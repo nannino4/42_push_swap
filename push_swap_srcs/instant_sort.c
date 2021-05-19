@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	instant_sort_3(t_list **a, t_list **b, int first, int last)
 {
@@ -24,7 +24,7 @@ void	instant_sort_3(t_list **a, t_list **b, int first, int last)
 	last = last + 1;
 }
 
-void    instant_sort_5(t_list **a, t_list **b, int first, int last)
+void	instant_sort_5(t_list **a, t_list **b, int first, int last)
 {
 	int	n;
 
@@ -43,7 +43,7 @@ void    instant_sort_5(t_list **a, t_list **b, int first, int last)
 	push_a(a, b);
 }
 
-void    instant_sort_4(t_list **a, t_list **b, int first, int last)
+void	instant_sort_4(t_list **a, t_list **b, int first, int last)
 {
 	int	n;
 
@@ -63,7 +63,7 @@ void    instant_sort_4(t_list **a, t_list **b, int first, int last)
 	push_a(a, b);
 }
 
-void    instant_sort_2(t_list **a, t_list **b, int first, int last)
+void	instant_sort_2(t_list **a, t_list **b, int first, int last)
 {
 	if ((*a)->index != first)
 		swap_a(a);
@@ -71,7 +71,7 @@ void    instant_sort_2(t_list **a, t_list **b, int first, int last)
 	last = last + 1;
 }
 
-void    instant_sort(t_list **a, t_list **b, int first, int last)
+void	instant_sort(t_list **a, t_list **b, int first, int last)
 {
 	if (last + 1 - first == 5)
 		instant_sort_5(a, b, first, last);

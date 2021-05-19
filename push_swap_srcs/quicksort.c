@@ -1,4 +1,4 @@
-#include "header.h"
+#include "push_swap.h"
 
 void	from_b_to_a(t_list **a, t_list **b, int first, int last)
 {
@@ -7,7 +7,6 @@ void	from_b_to_a(t_list **a, t_list **b, int first, int last)
 
 	middle = (last + first) / 2;
 	n = last - middle;
-
 	while (n)
 	{
 		while (!((*b)->index <= last && (*b)->index > middle))
