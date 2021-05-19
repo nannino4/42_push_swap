@@ -4,6 +4,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define BUFFER_SIZE 10
+
 typedef struct s_list
 {
 	int				n;
@@ -18,6 +20,19 @@ typedef struct s_index
 	int	middle;
 	int	last;
 }	t_index;
+
+/*
+** gnl.c
+*/
+
+int				get_next_line(int fd, char **line);
+size_t			ft_strlen(const char *s);
+size_t			ft_strlcpy(char *dst, const char *src, size_t size);
+size_t			ft_strlcat(char *dst, const char *src, size_t size);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_strjoin(char const *s1, char const *s2);
+int				find_ch(char const *s, char c);
+char			*ft_strdup(const char *s1);
 
 /*
 ** instructions_2.c
@@ -66,5 +81,6 @@ int		my_atoi(char *s);
 void	sort_stack(t_list **b, int n_arg);
 void	set_indexes(t_list *a, t_list **b, int n_arg);
 int		check_order(t_list *list, int first, int last);
+int	ft_strncmp(const char *s1, const char *s2, int n);
 
 #endif

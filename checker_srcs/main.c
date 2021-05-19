@@ -22,6 +22,38 @@ int	check_order(t_list *a, int first, int last)
 
 void	make_moves(t_list **a, t_list **b)
 {
+	char *line;
+
+	while (get_next_line(0, &line))
+	{
+		if (!ft_strncmp(line, "pa", 3))
+			push_a(a, b);
+		else if (!ft_strncmp(line, "pb", 3))
+			push_b(a, b);
+		else if (!ft_strncmp(line, "sa", 3))
+			swap_a(a);
+		else if (!ft_strncmp(line, "sb", 3))
+			swap_b(b);
+		else if (!ft_strncmp(line, "ss", 3))
+			swap_all(a, b);
+		else if (!ft_strncmp(line, "ra", 3))
+			rot_a(a);
+		else if (!ft_strncmp(line, "rb", 3))
+			rot_b(b);
+		else if (!ft_strncmp(line, "rr", 3))
+			rot_all(a, b);
+		else if (!ft_strncmp(line, "rra", 3))
+			rev_rot_a(a);
+		else if (!ft_strncmp(line, "rrb", 3))
+			rev_rot_b(b);
+		else if (!ft_strncmp(line, "rrr", 3))
+			rev_rot_all(a, b);
+		else
+		{
+			write(2, "\n\nError\nInvalid command\n\n", 25);
+			exit(1);
+		}
+	}
 }
 
 int	main(int argc, char **argv)

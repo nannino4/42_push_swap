@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "checker.h"
 
 int	my_atoi(char *s)
 {
@@ -83,4 +83,18 @@ void	set_indexes(t_list *a, t_list **b, int n_arg)
 		a = a->next;
 	}
 	destroy_list(b);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, int n)
+{
+	int		i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (s1[i] != s2[i] || !s1[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

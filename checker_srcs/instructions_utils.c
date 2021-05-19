@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "checker.h"
 
 void	rev_rot_list(t_list **head)
 {
@@ -60,5 +60,4 @@ void	rev_rot_all(t_list **a, t_list **b)
 {
 	rev_rot_list(a);
 	rev_rot_list(b);
-	write(1, "rrr\n", 4);
 }
