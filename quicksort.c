@@ -15,11 +15,11 @@ void from_b_to_a(t_list **a, t_list **b, int first, int last)
         push_a(a, b);
         n--;
     }
-    if (middle - first > 3)
+    if (middle + 1 - first > 3)
         from_b_to_a(a, b, first, middle);
     else
         sort_b(a, b, first, middle);
-    if (last + 1 - middle > 3)
+    if (last - middle > 3)
         from_a_to_b(a, b, middle + 1, last);
     else
         sort_a(a, b, middle + 1, last);

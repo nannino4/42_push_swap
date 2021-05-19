@@ -2,6 +2,7 @@
 
 void    sort_b_132(t_list **a, t_list **b)
 {
+    push_a(a, b);
     rot_a(a);
     push_a(a, b);
     push_a(a, b);

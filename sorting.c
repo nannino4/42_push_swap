@@ -28,7 +28,7 @@ void    sort_3_a(t_list **a, t_list **b, int first, int last)
 
 void    sort_a(t_list **a, t_list **b, int first, int last)
 {
-    if (last + 1 - last == 3)
+    if (last + 1 - first == 3)
         sort_3_a(a, b, first, last);
     else
     {

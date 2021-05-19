@@ -37,7 +37,7 @@ int main(int argc, char **argv)
         append_element(&b, my_atoi(*argv), 0);
     }
     set_indexes(a, &b, index.last + 1);
-    if (check_order(a, 0, index.last))
+    if (check_order(a, index.first, index.last))
         return (0);
     if (index.last + 1 - index.first > 5)
         first_a_to_b(&a, &b, index.first, index.last);
