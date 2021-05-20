@@ -11,7 +11,7 @@ int	check_order(t_list *a, int first, int last)
 	int	i;
 
 	i = first;
-	while (i <= last)
+	while (i <= last && a)
 	{
 		if (a->index != i++)
 			return (0);
