@@ -40,7 +40,6 @@ int	set_line_and_return(int n, char **line, int fd, char **s)
 
 	if (n == 0 && find_ch(s[fd], '\n') == -1)
 	{
-		*line = ft_substr(s[fd], 0, ft_strlen(s[fd]));
 		free(s[fd]);
 		s[fd] = 0;
 		return (0);

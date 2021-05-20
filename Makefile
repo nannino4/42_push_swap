@@ -22,7 +22,14 @@ SRCS		=	\
 OBJS		= $(SRCS:.c=.o)
 
 BONUS_SRCS	=	\
-				checker/main.c \
+				checker_srcs/gnl_utils.c \
+				checker_srcs/gnl.c \
+				checker_srcs/instructions_2.c \
+				checker_srcs/instructions_utils.c \
+				checker_srcs/instructions.c \
+				checker_srcs/list_utils.c \
+				checker_srcs/main.c \
+				checker_srcs/utils.c \
 
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 
@@ -40,10 +47,10 @@ bonus:		$(NAME) $(BONUS_OBJS)
 			gcc -g $(CFLAGS) $(BONUS_OBJS) -o $(BONUS_NAME)
 
 clean:
-			rm -f $(OBJS)
+			rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean:		clean
-			rm -f $(NAME)
+			rm -f $(NAME) $(BONUS_NAME)
 
 re:			fclean all
 
