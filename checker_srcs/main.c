@@ -4,6 +4,9 @@ void	init_index(t_index *index, int argc)
 {
 	index->first = 0;
 	index->last = argc - 2;
+	index->a = 0;
+	index->b = 0;
+	index->split = 0;
 }
 
 int	check_order(t_list *a, int first, int last)
@@ -72,27 +75,27 @@ void	make_moves(t_list **a, t_list **b)
 int	main(int argc, char **argv)
 {
 	t_index	index;
-	t_list	*a;
-	t_list	*b;
 
-	a = 0;
-	b = 0;
 	init_index(&index, argc);
 	if (argc < 2)
 		return (0);
-	while (--argc)
+	while (*(++argv))
 	{
-		append_element(&a, my_atoi(*(++argv)), 0);
-		append_element(&b, my_atoi(*(argv)), 0);
+		index.split = ft_split(*argv);
+		while (*index.split)
+		{
+			append_element(&index.a, my_atoi(*(index.split)), 0);
+			append_element(&index.b, my_atoi(*(index.split++)), 0);
+		}
 	}
-	set_indexes(a, &b, index.last + 1);
-	make_moves(&a, &b);
-	if (check_order(a, index.first, index.last) && !b)
+	set_indexes(index.a, &index.b, index.last + 1);
+	make_moves(&index.a, &index.b);
+	if (check_order(index.a, index.first, index.last) && !index.b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	if (a)
-		destroy_list(&a);
-	if (b)
-		destroy_list(&b);
+	if (index.a)
+		destroy_list(&index.a);
+	if (index.b)
+		destroy_list(&index.b);
 }

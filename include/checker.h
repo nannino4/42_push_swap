@@ -17,8 +17,10 @@ typedef struct s_list
 typedef struct s_index
 {
 	int	first;
-	int	middle;
 	int	last;
+	t_list	*a;
+	t_list	*b;
+	char **split;
 }	t_index;
 
 /*
