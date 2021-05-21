@@ -14,11 +14,11 @@ typedef struct s_list
 
 typedef struct s_index
 {
-	int	first;
-	int	last;
+	int		first;
+	int		last;
 	t_list	*a;
 	t_list	*b;
-	char **split;
+	char	**split;
 }	t_index;
 
 typedef struct s_data

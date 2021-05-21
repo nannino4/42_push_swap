@@ -1,5 +1,19 @@
 #include "checker.h"
 
+int	check_order(t_list *a, int first, int last)
+{
+	int	i;
+
+	i = first;
+	while (i <= last && a)
+	{
+		if (a->index != i++)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 char	*ft_strncpy(char *dest, char *src, size_t n, size_t i)
 {
 	while (src[i] && i < n)
@@ -50,15 +64,15 @@ char	**ft_split(const char *s, char c)
 	i = 0;
 	while (ft_next(&a, &size, c, 0))
 		i++;
-	if (!(m = (char **)malloc((i + 1) * sizeof(char *))))
-		return (NULL);
+	m = (char **)malloc((i + 1) * sizeof(char *));
 	i = 0;
 	a = (char *)s;
-	while ((n = ft_next(&a, &size, c, 0)))
+	n = ft_next(&a, &size, c, 0);
+	while (n)
 	{
-		if (!(m[i] = (char *)malloc((size + 1) * sizeof(char))))
-			return (NULL);
+		m[i] = (char *)malloc((size + 1) * sizeof(char));
 		ft_strncpy(m[i++], n, size, 0);
+		n = ft_next(&a, &size, c, 0);
 	}
 	m[i] = 0;
 	return (m);

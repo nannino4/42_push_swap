@@ -82,15 +82,15 @@ char	**ft_split(const char *s, char c)
 	i = 0;
 	while (ft_next(&a, &size, c, 0))
 		i++;
-	if (!(m = (char **)malloc((i + 1) * sizeof(char *))))
-		return (NULL);
+	m = (char **)malloc((i + 1) * sizeof(char *));
 	i = 0;
 	a = (char *)s;
-	while ((n = ft_next(&a, &size, c, 0)))
+	n = ft_next(&a, &size, c, 0);
+	while (n)
 	{
-		if (!(m[i] = (char *)malloc((size + 1) * sizeof(char))))
-			return (NULL);
+		m[i] = (char *)malloc((size + 1) * sizeof(char));
 		ft_strncpy(m[i++], n, size, 0);
+		n = ft_next(&a, &size, c, 0);
 	}
 	m[i] = 0;
 	return (m);

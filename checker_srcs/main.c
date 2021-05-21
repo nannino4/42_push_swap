@@ -7,10 +7,10 @@ void	init_index(t_index *index)
 	index->split = 0;
 }
 
-void init_indexes(t_index *index)
+void	init_indexes(t_index *index)
 {
-	int i;
-	t_list *tmp;
+	int		i;
+	t_list	*tmp;
 
 	i = 0;
 	tmp = index->a;
@@ -21,20 +21,6 @@ void init_indexes(t_index *index)
 	}
 	index->first = 0;
 	index->last = i;
-}
-
-int	check_order(t_list *a, int first, int last)
-{
-	int	i;
-
-	i = first;
-	while (i <= last && a)
-	{
-		if (a->index != i++)
-			return (0);
-		a = a->next;
-	}
-	return (1);
 }
 
 void	do_other_moves(t_list **a, t_list **b, char *line)

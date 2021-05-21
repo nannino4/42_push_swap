@@ -7,10 +7,10 @@ void	init_index(t_index *index)
 	index->split = 0;
 }
 
-void init_indexes(t_index *index)
+void	init_indexes(t_index *index)
 {
-	int i;
-	t_list *tmp;
+	int		i;
+	t_list	*tmp;
 
 	i = 0;
 	tmp = index->a;
