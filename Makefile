@@ -30,6 +30,7 @@ BONUS_SRCS	=	\
 				checker_srcs/list_utils.c \
 				checker_srcs/main.c \
 				checker_srcs/utils.c \
+				checker_srcs/utils_2.c \
 
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 

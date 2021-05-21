@@ -77,6 +77,7 @@ void	set_indexes(t_list *a, t_list **b, int n_arg);
 int		find_index(int my_index, t_list *list);
 int		check_order(t_list *list, int first, int last);
 void	init_data(t_data *data, int first, int last);
+char	**ft_split(const char *s, char c);
 
 /*
 ** quicksort.c

@@ -57,3 +57,10 @@ void	set_indexes(t_list *a, t_list **b, int n_arg)
 	}
 	destroy_list(b);
 }
+
+void	init_data(t_data *data, int first, int last)
+{
+	data->i = 0;
+	data->middle = (last + first) / 2;
+	data->n = data->middle + 1 - first;
+}

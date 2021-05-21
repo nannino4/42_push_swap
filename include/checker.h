@@ -84,5 +84,6 @@ void	sort_stack(t_list **b, int n_arg);
 void	set_indexes(t_list *a, t_list **b, int n_arg);
 int		check_order(t_list *list, int first, int last);
 int		ft_strncmp(const char *s1, const char *s2, int n);
+char	**ft_split(const char *s, char c);
 
 #endif
