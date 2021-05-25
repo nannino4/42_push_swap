@@ -75,6 +75,7 @@ void	make_moves(t_list **a, t_list **b)
 int	main(int argc, char **argv)
 {
 	t_index	index;
+	char **tmp;
 
 	init_index(&index);
 	if (argc < 2)
@@ -82,11 +83,14 @@ int	main(int argc, char **argv)
 	while (*(++argv))
 	{
 		index.split = ft_split(*argv, ' ');
+		tmp = index.split;
 		while (*index.split)
 		{
 			append_element(&index.a, my_atoi(*(index.split)), 0);
 			append_element(&index.b, my_atoi(*(index.split++)), 0);
+			free(*index.split++);
 		}
+		free(tmp);
 	}
 	init_indexes(&index);
 	set_indexes(index.a, &index.b, index.last + 1);
