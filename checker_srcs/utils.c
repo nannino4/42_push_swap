@@ -1,5 +1,11 @@
 #include "checker.h"
 
+void	invalid_input_error(void)
+{
+	write(1, "\n\nError\nInvalid input format\n\n", 30);
+	exit(1);
+}
+
 int	my_atoi(char *s)
 {
 	long int	n;
@@ -17,13 +23,12 @@ int	my_atoi(char *s)
 		n *= 10;
 		n += *s - '0';
 		s++;
+		if ((minus == 1 && n > INT32_MAX) || \
+				(minus == -1 && n - 1 > INT32_MAX))
+			invalid_input_error();
 	}
-	if (*s || (minus == 1 && n > INT32_MAX) || \
-			(minus == -1 && n - 1 > INT32_MAX))
-	{
-		write(1, "\n\nError\nInvalid input format\n\n", 30);
-		exit(1);
-	}
+	if (*s)
+		invalid_input_error();
 	return (n * minus);
 }
 
@@ -83,18 +88,4 @@ void	set_indexes(t_list *a, t_list **b, int n_arg)
 		a = a->next;
 	}
 	destroy_list(b);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, int n)
-{
-	int		i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (s1[i] != s2[i] || !s1[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
 }

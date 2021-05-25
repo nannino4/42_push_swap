@@ -7,10 +7,8 @@ void	rev_rot_list(t_list **head)
 	t_list	*last;
 
 	tmp = *head;
-	if (!(*head)->next)
-	{
+	if (!(*head) || !(*head)->next)
 		return ;
-	}
 	tmp = go_to_end(tmp);
 	first = tmp;
 	first->next = *head;
@@ -28,10 +26,8 @@ void	rot_list(t_list **head)
 	t_list	*last;
 
 	tmp = *head;
-	if (!(*head)->next)
-	{
+	if (!(*head) || !(*head)->next)
 		return ;
-	}
 	last = *head;
 	first = (*head)->next;
 	first->prev = 0;
